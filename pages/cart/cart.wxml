@@ -1,0 +1,16 @@
+<!--pages/cart/cart.wxml-->
+<!-- <view class="cart">
+    <view class="cart-noLogin">
+      <view class="cart-img">
+        <image class="img" src="{{cart_img}}"></image>
+      </view>
+      <view class="cart-info">
+        <view><text class="info-tip">登录账号才能看到购物车哦</text></view>
+        <view><text class="info-err">登录失效</text></view>
+        <button size="mini" class="btn-login">马上登录</button>
+      </view>
+    </view>
+</view> -->
+<view id="cart">
+  <no-content types="cart" title="登录账号才能看到购物车哦" subTitle="登录失效" btn="马上登录"></no-content>
+</view>
