@@ -103,6 +103,7 @@ Page({
   goto (ev) {
     let route = ev.currentTarget.dataset.route;
     if (route) {
+      console.log(route)
       wx.navigateTo({
         url: `/pages/${route}/${route}`,
       })
