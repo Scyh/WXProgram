@@ -27,7 +27,7 @@
   <view class="content">
     <view class="content-title">猜你喜欢</view>
     <view class="main">
-      <goods-item wx:for="{{goods}}" wx:key="goodsItem" goods="{{item}}" class="main-item" style="margin-right: {{ index % 2 == 0 ? '26rpx' : '0' }}" />
+      <goods-item wx:for="{{goods}}" wx:key="goodsItem" goods="{{item}}" data-item="{{ index }}" class="main-item {{ 'main-item' + (index + 1) }}" style="margin-right: {{ index % 2 == 0 ? '26rpx' : '0' }}" />
     </view>
   </view>
 </view>

@@ -12,5 +12,6 @@
     </view>
 </view> -->
 <view id="cart">
-  <no-content types="cart" title="登录账号才能看到购物车哦" subTitle="登录失效" btn="马上登录"></no-content>
+  <no-content wx:if="!!app.globalData.userInfo" types="cart" title="购物车里暂时还没有东西哦" subTitle="快去购买吧"></no-content>
+  <no-content wx:else types="cart" title="登录账号才能看到购物车哦" subTitle="登录失效" btn="马上登录"></no-content>
 </view>

@@ -1,6 +1,6 @@
 /* components/goodsItem/goodsItem.wxss */
 .goods {
-  margin: 0 auto;
+  margin: 0 auto 30rpx;
   padding: 0 30rpx;
   width: 336rpx;
   border: 1px solid rgb(237, 237, 237);
@@ -45,6 +45,7 @@
 .goods-meta {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4rpx;
 }
 .goods-price {
   font-size: 35rpx;
@@ -52,7 +53,7 @@
   font-weight: bold;
 }
 .goods-simi {
-  padding: 10rpx;
+  padding: 6rpx;
   font-size: 24rpx;
   background: rgb(255, 230, 235);
   color: rgb(255, 0, 54);

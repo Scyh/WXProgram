@@ -173,7 +173,6 @@ Page({
     query.exec((res) => {
       let top = res[0].top, // 元素距离顶部的距离;
           h = res[0].height; // 元素的高度
-      console.log(top, h)
       // if (top <= 0 && this.data.scroll_dire == 'down') {
       //   this.setData({ showTop: true, showBtm: false });
       //   console.log(1)

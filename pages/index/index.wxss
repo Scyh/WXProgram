@@ -12,7 +12,7 @@
   background: #fff;
 }
 .layOut {
-  position: absolute;
+  position: relative;
   z-index: 999;
   display: flex;
   flex-direction: row;
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   width: 20%;
-  height: 148rpx;
+  height: 152rpx;
   text-align: center;
 }
 .layOut-item image {
