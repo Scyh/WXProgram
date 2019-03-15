@@ -1,6 +1,6 @@
 <!--components/goodsItem/goodsItem.wxml-->
 <view class="goods">
-  <image class="goods-img" src="{{goods.goods_img}}"></image>
+  <image class="goods-img" src="{{goods.imgSrc || ''}}"></image>
   <view class="goods-brand" style="background: {{ goods.goods_brand.bg_color }}">
     <image wx:if="{{goods.goods_brand.img}}" src="{{goods.goods_brand.img}}" class="brand-img"></image>
     <!-- <view class="brand-img" wx:if="{{goods.goods_brand.img}}" style='background-image: url({{goods.goods_brand.img}})'></view> -->

@@ -1,6 +1,22 @@
 import scrollLoad from '../../utils/scrollload.js';
 import LazyLoad from '../../utils/lazyload.js'
-import { throttle } from '../../utils/common.js'
+function generatGoods(count) {
+    count = count || 8;
+    var arr = [];
+    for (var i = 0; i < count; i ++) {
+        arr.push({
+            goods_img: "http://gw.alicdn.com/bao/uploaded/i2/3702913713/TB2Don2X9BYBeNjy0FeXXbnmFXa_!!3702913713.png_290x10000.jpg_.webp",
+            goods_brand: {
+                brand: "JERXUN/京选",
+                bg_color: "rgb(206, 175, 163)",
+                img: "",
+            },
+            intro: "京选钢丝钳老虎钳子6/7/8寸多功能工业级电工钳子平口克丝断线钳" + new Date(),
+            price: "36.9"
+        })
+    }
+    return arr
+}
 // pages/tianmao/tianmao.js
 Page({
 
@@ -92,31 +108,28 @@ Page({
         intro: "京选钢丝钳老虎钳子6/7/8寸多功能工业级电工钳子平口克丝断线钳",
         price: "36.9"
       }      
-    ]
+    ],
+    
   },
+  onReady() {
+      this.data.lazyLoad = new LazyLoad({ctx: this, imgSelector: '.main-item', ctxDataArray: 'goods', imgClassName: 'goods_img'});
 
+    this.data.lazyLoad.init()
+
+  },
   onPageScroll(ev) {
-    LazyLoad(this, ev);
-
-    
-    let windowH = wx.getSystemInfoSync().windowHeight,
-      scrollTop = ev.scrollTop;
-    
+    this.data.lazyLoad.lazy();
     this.setData({ animate: true })
     if (ev.scrollTop == 0) this.setData({ animate: false });
-    
+
+    // 滚动加载    
     var sL = scrollLoad(this, ev, '#tianmao');
     var that = this;
     sL(() => {
       setTimeout(() => {
-        var temp = JSON.stringify(that.data.goods.slice(0, 4));
-        that.setData({ goods: that.data.goods.concat(JSON.parse(temp)) });
-        
+        that.setData({ goods: that.data.goods.concat(generatGoods()) });
       }, 500)
     });
-  }, 
-
-  onReady: function (options) {
-    
   },
+
 })

@@ -10,7 +10,8 @@ Page({
         "http://gw.alicdn.com/imgextra/i3/132/O1CN011CqUkZLSHggADjP_!!132-0-luban.jpg"
       ],
       interval: 3000,
-      duration: 900
+      duration: 900,
+      circular: true,
     },
     DFrames: {
       bg: "https://gw.alicdn.com/tps/TB155AUPpXXXXajXVXXXXXXXXXX-1125-480.png_.webp",

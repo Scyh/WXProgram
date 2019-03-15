@@ -1,6 +1,6 @@
 <!--pages/index.wxml-->
 <view class="container">
-  <swiper indicator-dots="true" autoplay="true" interval="{{swiper.interval}}" duration="{{swiper.duration}}"
+  <swiper indicator-dots="true" autoplay="true" interval="{{swiper.interval}}" circular="{{swiper.circular || true }}" duration="{{swiper.duration}}"
    indicator-color="rgba(255, 255, 255, .3)" indicator-active-color="rgb(255, 80, 0)">
     <block wx:for="{{swiper.imgsUrl}}" wx:key="index_swiper">
       <swiper-item>
