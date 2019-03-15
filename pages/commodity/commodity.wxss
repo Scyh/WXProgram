@@ -1,0 +1,53 @@
+.section-top {
+    position: relative;
+}
+.swiper {
+    height: 750rpx;
+}
+.slide-image {
+    width: 100%;
+    height: 100%;
+}
+.swiper-curr {
+    position: absolute;
+    bottom: 20rpx;
+    right: 20rpx;
+    padding: 4rpx 20rpx;
+    font-size: 24rpx;
+    color: #fff;
+    border-radius: 20rpx;
+    background: rgba(100,100,100,.6);
+}
+
+.section {
+    margin-bottom: 20rpx;
+    padding: 10rpx 20rpx;
+    background: #fff;
+}
+.price {
+    color: #f00;
+    font-size: 44rpx;
+}
+.introd {
+    font-size: 28rpx;
+    color: #333;
+}
+
+.section-item {
+    padding: 20rpx 0;
+}
+.text-sm {
+    margin-right: 20rpx;
+}
+.more {
+    float: right;
+    width: 26rpx;
+    height: 26rpx;
+}
+.box-header {
+    line-height: 70rpx;
+}
+.box-header .more {
+    margin-top: 22rpx;
+    margin-left: 8rpx;
+}

@@ -1,0 +1,19 @@
+.purchaser-profile {
+    width: 48rpx;
+    height: 48rpx;
+}
+.purchaser-name,
+.commodity-info {
+    color: #999;
+    font-size: 24rpx;
+}
+.comment-body {
+    font-size: 28rpx;
+    color: #333;
+    display: -webkit-box;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}

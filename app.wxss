@@ -9,3 +9,22 @@
   height: 0;
   color: transparent;
 }
+
+.text-sm {
+    font-size: 24rpx;
+    color: #999;
+}
+.text-normal {
+    font-size: 26rpx;
+    color: #333;
+}
+.text-danger {
+    color: #FF0036;
+}
+
+.pull-right {
+    float: right!important;
+}
+.pull-left {
+    float: left!important;
+}

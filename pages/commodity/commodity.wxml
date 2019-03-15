@@ -1,0 +1,40 @@
+<view class="container">
+
+    <!-- 轮播图 -->
+    <view class="section-top">
+        <swiper class="swiper" indicator-dots="false" indicator-color="transparent" indicator-active-color="transparent" autoplay="{{false}}" duration="300" bindchange="swiperChange">
+            <swiper-item wx:for="{{swiper}}" wx:key="{{index}}">
+                <image src="{{item}}" class="slide-image"/>
+            </swiper-item>
+        </swiper>
+        <view class="swiper-curr">{{currSwiper}}/{{swiper.length}}</view>
+    </view>
+
+    <!-- 商品信息 -->
+    <view class="section">
+        <view><text class="price">￥399.00</text></view>
+        <view><text class="introd">唐狮2019春秋新款工装男外套青少年立领运动港风</text></view>
+    </view>
+
+    <!-- 选择和参数 -->
+    <view class="section">
+        <view class="section-item text-normal"><text class="text-sm">选择</text>请选择颜色尺码<image class="more" src="../../assert/imgs/more.png"></image></view>
+        <view class="section-item text-normal"><text class="text-sm">参数</text>品牌&nbsp;尺码...<image class="more" src="../../assert/imgs/more.png"></image></view>
+    </view>
+
+    <!-- 商品评价 -->
+    <view class="section">
+        <view class="box-header">
+            <text class="comment text-normal">商品评价 ({{commentLen || 0}})</text>
+            <view class="text-danger text-normal pull-right">查看全部<image class="more" src="../../assert/imgs/more.png"></image></view>
+        </view>
+        <view class="box-body">
+            <comment></comment>
+        </view>
+    </view>
+
+    <view class="section">
+        <shop></shop>
+    </view>
+
+</view>
