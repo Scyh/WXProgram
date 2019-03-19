@@ -96,5 +96,5 @@ body {
     background: #FF9500;
 }
 .bg-red {
-    background: #FF0036;   
+    background: #FF0036;
 }
