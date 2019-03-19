@@ -1,6 +1,7 @@
 {
     "usingComponents": {
         "comment": "/components/comment/comment",
-        "shop": "/components/shop/shop"
+        "shop": "/components/shop/shop",
+        "select-box": "/components/selectBox/selectBox"
     }
 }

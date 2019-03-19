@@ -1,0 +1,27 @@
+<view class="select-box" catchtouchmove="prevent">
+    <view class="box">
+        <view class="box-header">
+            <view class="img-wrap">
+                <image src="" class="img"></image>
+            </view>
+            <view class="commodity-price">
+                <view class="stpck">库存 {{commodity.stock}} 件</view>
+                <view>请选择: </view>
+            </view>
+        </view>
+        <view class="box-body">
+            <block wx:for="{{commodity.selection}}" wx:for-item="selection" wx:key="{{index}}">
+                <view class="section-item">
+                    <view class="title">{{selection.title}}</view>
+                    <view class="content">
+                        <view wx:for="{{selection.category}}" wx:for-item="cate" wx:for-index="idx" wx:key="{{idx}}" class="cate-item">{{cate.name}}</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <view class="box-footer">
+            
+        </view>
+    </view>
+</view>
+<cus-mask></cus-mask>
