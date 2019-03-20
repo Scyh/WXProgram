@@ -1,4 +1,4 @@
-<view class="select-box" catchtouchmove="prevent" hidden="{{show}}" class="animated">
+<view class="select-box {{show ? 'animated' : ''}}" catchtouchmove="prevent">
     <view class="box">
         <view class="box-header">
             <view class="img-wrap">
@@ -9,7 +9,7 @@
                 <view class="stock">库存 {{selectedInfo.stock}} 件</view>
                 <view>{{selectedInfo.currSelect ? '已选择' : '请选择'}}: {{selectedInfo.currSelect || selectedInfo.noSelect}}</view>
             </view>
-            <view class="btn-close">X</view>
+            <view class="btn-close" bindtap="slide">X</view>
         </view>
         <view class="box-body">
             <block wx:for="{{commodity.selection}}" wx:for-item="selection" wx:key="{{index}}">
@@ -27,16 +27,19 @@
             <view class="section-item purchase-count">
                 <view class="purchase-title">购买数量</view>
                 <view class="btn-group">
-                    <view class="btn btn-decrease {{purchaseCoung <= 1 ? 'disabled' : ''}}" data-disabled="{{!!(purchaseCoung >= 1)}}">-</view>
-                    <view class="btn count">{{purchaseCoung}}</view>
-                    <view class="btn btn-increase">+</view>
+                    <view class="btn btn-decrease {{purchaseCount <= 1 ? 'disabled' : ''}}" data-disabled="{{!!(purchaseCount <= 1)}}" bindtap="decrease">-</view>
+                    <view class="btn count">{{purchaseCount}}</view>
+                    <view class="btn btn-increase {{purchaseCount >= selectedInfo.stock ? 'disabled' : ''}}" data-disabled="{{!!(purchaseCount >= selectedInfo.stock)}}" bindtap="increase">+</view>
                 </view>
             </view>
         </view>
         <view class="box-footer">
-            <view class="footer-item btn-takeIn">加入购物车</view>
-            <view class="footer-item btn-purchase">立即购买</view>
+            <block wx:if="{{!footerType}}">
+                <view class="footer-item btn-takeIn">加入购物车</view>
+                <view class="footer-item btn-purchase">立即购买</view>
+            </block>
+            <view wx:else class="footer-item btn-confirm" catchtap="slide">确定</view>
         </view>
     </view>
 </view>
-<cus-mask></cus-mask>
+<cus-mask id="mask" bind:closeSelf="slide"></cus-mask>

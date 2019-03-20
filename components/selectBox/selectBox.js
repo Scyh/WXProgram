@@ -1,6 +1,8 @@
 Component({
     data: {
-        purchaseCoung: 1,
+        show: false,
+        footerType: false,  // 底部类型切换
+        purchaseCount: 1,
         commodity: {
             img: "http:////gw.alicdn.com/bao/uploaded/i4/3566834623/TB2VcSVr9YTBKNjSZKbXXXJ8pXa_!!3566834623.jpg_200x200Q50s50.jpg",
             defaultPrice: '69',
@@ -290,15 +292,6 @@ Component({
             this.setData({ selected: obj })
         }
     },
-    pageLifetimes: {
-        show() {
-            // console.log('show')
-        },
-        hide() {
-          // 页面被隐藏
-        },
-        
-    },
     methods: {
         prevent() { return false },
 
@@ -310,15 +303,7 @@ Component({
                 title = ev.target.dataset.title,
                 content = ev.target.dataset.content;
 
-            // let noStockCate = that.getStock(commodity.details, content);
-
-            if (obj[title] === content) {
-                obj[title] = null;
-                // that.setDisabled(commodity, noStockCate, false)
-            } else {
-                obj[title] = content;
-                // that.setDisabled(commodity, noStockCate, true)
-            }
+            obj[title] === content ? obj[title] = null : obj[title] = content;
             this.setData({ selected: obj })
         },
         sort(arr) {
@@ -421,7 +406,34 @@ Component({
                 obj.hasOwnProperty(i) && obj[i] === null && result.push(i)
             }
             return result.join(" ");
-        }
+        },
+
+        slide(flag) {
+            // 选择框已显示
+            if (this.data.show) {
+                this.selectComponent("#mask").hide();
+            } else {
+                this.selectComponent("#mask").show();
+            };
+            console.log(flag)
+            this.setData({
+                show: !this.data.show,
+                footerType: flag ? flag : false
+            })
+        },
+
+        decrease() {
+            if (this.data.purchaseCount > 1) {
+                this.setData({ purchaseCount: this.data.purchaseCount - 1 })
+            }
+        },
+
+        increase() {
+            if (this.data.purchaseCount < this.data.selectedInfo.stock) {
+                this.setData({ purchaseCount: this.data.purchaseCount + 1 })
+            }
+        },
+        
     },
     observers: {
         "selected"(data) {
@@ -483,7 +495,7 @@ Component({
                     img: hasVal ? '' : commodity.img,
                 }
             that.setData({ selectedInfo });
-            console.log(this.data.selectedInfo)
+            // console.log(this.data.selectedInfo)
         }
     }
 })

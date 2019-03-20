@@ -27,8 +27,8 @@
 
         <!-- 选择和参数 -->
         <view class="section">
-            <view class="section-item text-normal"><text class="text-sm">选择 </text>请选择颜色尺码<image class="more" src="../../assert/imgs/more.png"></image></view>
-            <view class="section-item text-normal"><text class="text-sm">参数 </text>品牌 尺码...<image class="more" src="../../assert/imgs/more.png"></image></view>
+            <view class="section-item text-normal" bindtap="showSelectBox"><text class="text-sm">选择 </text>请选择颜色尺码<image class="more" src="../../assert/imgs/more.png"></image></view>
+            <view class="section-item text-normal" bindtap="showParamsBox"><text class="text-sm">参数 </text>品牌 尺码...<image class="more" src="../../assert/imgs/more.png"></image></view>
         </view>
     </view>
 
@@ -37,7 +37,9 @@
         <view class="section">
             <view class="box-header">
                 <text class="comment text-normal">商品评价 ({{commentLen || 0}})</text>
-                <view class="text-danger text-normal pull-right">查看全部<image class="more" src="../../assert/imgs/more.png"></image></view>
+                <navigator url="/pages/comments/comments" class="text-danger text-normal pull-right">
+                    <view >查看全部<image class="more" src="../../assert/imgs/more.png"></image></view>
+                </navigator>
             </view>
             <view class="box-body">
                 <comment></comment>
@@ -103,12 +105,15 @@
                 <text class="text-sm">收藏</text>
             </view>
         </view>
-        <view class="buy-item flex flex-center bg-yellow text-lg text-fff">加入购物车</view>
-        <view class="buy-item flex flex-center bg-red text-lg text-fff">立即购买</view>
+        <view class="buy-item flex flex-center bg-yellow text-lg text-fff" data-footerType="true" bindtap="showSelectBox">加入购物车</view>
+        <view class="buy-item flex flex-center bg-red text-lg text-fff" data-footerType="true" bindtap="showSelectBox">立即购买</view>
+
     </view>
 
-    <!-- 商品选择弹窗 -->
-    <select-box></select-box>
+    <!-- 商品规格选择弹窗 -->
+    <select-box id="selectBox"></select-box>
 
+    <!-- 参数弹窗 -->
+    <params-box id="paramsBox"></params-box>
 
 </view>

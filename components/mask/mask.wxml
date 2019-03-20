@@ -1,1 +1,1 @@
-<view class="mask" catchtouchmove="prevent"></view>
+<view class="mask" catchtouchmove="prevent" hidden="{{show}}" bindtap="close"></view>

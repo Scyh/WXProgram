@@ -52,8 +52,8 @@ Page({
         iscollected: false, // 默认未收藏
     },
 
-    onLoad() {
-        
+    onLoad(options) {
+        console.log(JSON.stringify(options.id))
     },
     
     onPageScroll() {
@@ -75,6 +75,16 @@ Page({
     // 收藏
     collect() {
         this.setData({ iscollected: !this.data.iscollected })
+    },
+
+    // 显示 选择弹窗
+    showSelectBox(ev) {
+        let flag = ev.currentTarget.dataset.footertype;
+        this.selectComponent("#selectBox").slide(flag);
+    },
+
+    showParamsBox(ev) {
+        this.selectComponent("#paramsBox").slide();
     }
 
 })
