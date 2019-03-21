@@ -111,7 +111,7 @@
     </view>
 
     <!-- 商品规格选择弹窗 -->
-    <select-box id="selectBox"></select-box>
+    <select-box id="selectBox" shopName="唐狮旗舰店"></select-box>
 
     <!-- 参数弹窗 -->
     <params-box id="paramsBox"></params-box>

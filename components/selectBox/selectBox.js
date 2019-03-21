@@ -1,4 +1,11 @@
+import Stroage from '../../utils/storage'
+
 Component({
+    prpoerties: {
+        shopName: {
+            type: String
+        }
+    },
     data: {
         show: false,
         footerType: false,  // 底部类型切换
@@ -306,6 +313,7 @@ Component({
             obj[title] === content ? obj[title] = null : obj[title] = content;
             this.setData({ selected: obj })
         },
+
         sort(arr) {
             if (!Array.isArray(arr)) return;
             arr.sort(function(a, b) {
@@ -434,6 +442,20 @@ Component({
             }
         },
         
+        purchase() {
+            if (!this.data.selectedInfo.currSelect) {
+                wx.showToast({ title: '请选择商品参数！', duration: 1200, icon: 'none' })
+            } else {
+                let obj = {
+                    count: this.data.purchaseCount,   
+                    price: this.data.selectedInfo.price,
+                    params: this.data.selectedInfo.currSelect,
+                    shopName: this.data.shopName
+                }
+                new Storage().set('commodities', obj, true, this.slide)
+            }
+        }
+
     },
     observers: {
         "selected"(data) {

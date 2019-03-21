@@ -35,10 +35,10 @@
         </view>
         <view class="box-footer">
             <block wx:if="{{!footerType}}">
-                <view class="footer-item btn-takeIn">加入购物车</view>
+                <view class="footer-item btn-takeIn" catchtap="purchase">加入购物车</view>
                 <view class="footer-item btn-purchase">立即购买</view>
             </block>
-            <view wx:else class="footer-item btn-confirm" catchtap="slide">确定</view>
+            <view wx:else class="footer-item btn-confirm" catchtap="purchase">确定</view>
         </view>
     </view>
 </view>
