@@ -1,9 +1,9 @@
-import Stroage from '../../utils/storage'
+import Storage from '../../utils/storage'
 
 Component({
-    prpoerties: {
-        shopName: {
-            type: String
+    properties: {
+        shopInfo: {
+            type: Object
         }
     },
     data: {
@@ -285,11 +285,7 @@ Component({
             this.data.canObserve = false;
         },
     
-        detached() {
-          
-        },
         ready() {
-            
             let obj = {};
             // 遍历 selection，查看主分类中的条目，是否有库存，没有则设置disabled为true
             this.data.commodity.selection.forEach(item => {
@@ -423,7 +419,6 @@ Component({
             } else {
                 this.selectComponent("#mask").show();
             };
-            console.log(flag)
             this.setData({
                 show: !this.data.show,
                 footerType: flag ? flag : false
@@ -447,15 +442,57 @@ Component({
                 wx.showToast({ title: '请选择商品参数！', duration: 1200, icon: 'none' })
             } else {
                 let obj = {
-                    count: this.data.purchaseCount,   
-                    price: this.data.selectedInfo.price,
-                    params: this.data.selectedInfo.currSelect,
-                    shopName: this.data.shopName
+                        name: this.data.shopInfo.commodity,
+                        count: this.data.purchaseCount,
+                        price: this.data.selectedInfo.price,
+                        params: this.data.selectedInfo.currSelect,
+                        selected: false,
+                    },
+                    that = this,
+                    storage = new Storage(),
+                    temp = storage.getSync('commodities', true) || [],
+                    { exist ,idx } = that.exist(temp, 'shopName', this.data.shopInfo.name);
+                    console.log(temp)
+                if (!exist) {
+                    temp.push({
+                        shopName: this.data.shopInfo.name,
+                        shopType: this.data.shopInfo.type,
+                        selected: false,
+                        isEdit: false,
+                        commodity: [obj]
+                    })
+                } else {
+                    let flag = false;
+                    console.log(idx, temp, this.data.shopInfo)
+                    temp[idx]['commodity'].forEach(item => {
+                        if (item.name === that.data.shopInfo.commodity && item.params === that.data.selectedInfo.currSelect) {
+                            item.count += that.data.purchaseCount;
+                            flag = true;
+                        }
+                    })
+                    !flag && temp[idx]['commodity'].push(obj)
                 }
-                new Storage().set('commodities', obj, true, this.slide)
+
+                new Storage().set('commodities', temp, true, true, function() {
+                    that.slide()
+                })
+            }
+        },
+                
+        exist(arr, key, value) {
+            if (!arr || !key) return;
+
+            let result = false,
+                idx = -1;
+            arr.forEach((item, index) => {
+                if (item[key] === value) { result = true; idx = index };
+            })
+            console.log(idx, result)
+            return {
+                exist: result,
+                idx: idx
             }
         }
-
     },
     observers: {
         "selected"(data) {

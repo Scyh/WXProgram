@@ -2,15 +2,15 @@ Page({
     data: {
         sections: ['商品', '评价', '详情'],
         currSection: 1,
-        swiper: [
+        swiper: [  // 轮播
             "http:////img.alicdn.com/irecomendsmgextra/i1/188124207/O1CN0104aPMi1gwqkVK7Z54_!!0-item_pic.jpg_2200x2200Q50s50.jpg_.webp",
             "http:////img.alicdn.com/imgextra/i4/188124207/O1CN01eH4Tkq1gwqkXesnzN-188124207.jpg_2200x2200Q50s50.jpg_.webp",
             "http:////img.alicdn.com/imgextra/i4/188124207/O1CN01mpspbT1gwqkVD2mou-188124207.jpg_2200x2200Q50s50.jpg_.webp",
             "http:////img.alicdn.com/imgextra/i1/188124207/O1CN01XqoFWL1gwqkVJemW5-188124207.jpg_2200x2200Q50s50.jpg_.webp",
             "http:////img.alicdn.com/imgextra/i1/188124207/O1CN01FFRc5d1gwqkWbrRIJ-188124207.jpg_2200x2200Q50s50.jpg_.webp"
         ],
-        currSwiper: 1,
-        recomends: [
+        currSwiper: 1,  // 当前轮播
+        recomends: [    // 看了又看
             {
                 img: "http:////img.alicdn.com/bao/uploaded/O1CN01HYkO0I1gwqjvxi6ol_!!0-item_pic.jpg_320x320Q50s50.jpg_.webp",
                 text: "唐狮牛仔外套男春秋休闲韩版潮流港风夹克修身帅气ins超火冬衣服",
@@ -30,7 +30,7 @@ Page({
                 newPrice: 169
             }
         ],
-        detailImgs: [
+        detailImgs: [   // 详情图
             "http:////img.alicdn.com/imgextra/i1/188124207/O1CN01J6hskg1gwqkMHbaYG_!!188124207.jpg_760x760Q90s50.jpg_.webp",
             "http:////img.alicdn.com/imgextra/i4/188124207/O1CN011AcwCF1gwqkPdEzAh_!!188124207.jpg_760x760Q90s50.jpg_.webp",
             "http:////img.alicdn.com/imgextra/i3/188124207/TB27trfit4opuFjSZFLXXX8mXXa-188124207.jpg_760x760Q90s50.jpg_.webp",
@@ -50,6 +50,11 @@ Page({
             "http:////img.alicdn.com/tfs/TB1k9XsQpXXXXXLXpXXXXXXXXXX-750-368.png_760x760Q90s50.jpg_.webp"
         ],
         iscollected: false, // 默认未收藏
+        shopInfo: {
+            name: '唐狮旗舰店',
+            type: 'qiye',
+            commodity: '这里是选购商品名称'
+        }
     },
 
     onLoad(options) {

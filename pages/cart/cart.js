@@ -1,3 +1,5 @@
+import Storage from '../../utils/storage'
+
 // pages/cart/cart.js
 const app = getApp();
 Page({
@@ -93,12 +95,10 @@ Page({
                 url: `/pages/login/login?from=${this.route}&tab=true`,
             })
         }
-
-        console.log(this.data.commodities.length)
     },
 
-    onReady: function () {
-
+    onShow: function () {
+        this.getCommodities();
     },
 
     onPullDownRefresh: function () {
@@ -108,7 +108,6 @@ Page({
 
     // 选择 店铺 或 商品
     checked(ev) {
-        
         let dataset = ev.currentTarget.dataset,
             commodities = [].slice.call(this.data.commodities),
             type = dataset.type,
@@ -179,7 +178,7 @@ Page({
         } else {
             commodities[shopidx].commodity[commodityIdx]['selected'] = boolean;
             allCount += commodities[shopidx].commodity[commodityIdx]['count'];
-            allAccount += commodities[shopidx].commodity[commodityIdx]['price'];
+            allAccount += commodities[shopidx].commodity[commodityIdx]['price'] * commodities[shopidx].commodity[commodityIdx]['count'];
             if (!boolean) { allAccount = allAccount * -1; allCount = allCount * -1 };
             let result = true;
             commodities[shopidx].commodity.forEach(item => {
@@ -216,5 +215,35 @@ Page({
         this.setData({ commodities })
 
     },
+
+    getCommodities() {
+        let that = this;
+        new Storage().get('commodities', false, function(data) {
+            that.setData({ commodities: JSON.parse(data) || [] })
+        });
+
+    },
+
+    // 修改购买数量
+    change(ev) {
+        let dataset = ev.currentTarget.dataset,
+            event = dataset['event'],
+            shopidx = dataset['shopidx'],
+            commodityidx = dataset['index'],
+            commodities = [].concat(this.data.commodities),
+            count = commodities[shopidx]['commodity'][commodityidx].count;
+        if (event === 'decrease') {
+            if (count <= 1) {
+                wx.showToast({ title: "宝贝数量已经不能再减少啦！", icon: 'none' });
+            } else {
+                commodities[shopidx]['commodity'][commodityidx].count = count - 1;
+            }
+        } else if (event === 'increase') {
+            // 需要判断库存
+            commodities[shopidx]['commodity'][commodityidx].count = count + 1;
+        };
+
+        this.setData({ commodities });
+    }
 
 })

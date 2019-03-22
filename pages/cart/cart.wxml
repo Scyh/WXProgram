@@ -30,9 +30,9 @@
                                     <view class="commodity-price flex">
                                         <view class="price text-normal"><text class="text-sm price">￥</text>{{commodity.price}}</view>
                                         <view class="btn-group flex flex-center">
-                                            <view class="btn btn-decrease">-</view>
+                                            <view class="btn btn-decrease" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'decrease'}}" catchtap="change">-</view>
                                             <view class="btn btn-count text-normal">{{commodity.count}}</view>
-                                            <view class="btn btn-increase">+</view>
+                                            <view class="btn btn-increase" data-shopidx="{{index}}" data-index="{{idx}}" data-event="{{'increase'}}" catchtap="change">+</view>
                                         </view>
                                     </view>
                                 </view>

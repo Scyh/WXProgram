@@ -1,52 +1,58 @@
 class Storage {
     constructor() {
-
     }
 
     get(key, isAlert, cb) {
         wx.getStorage({
             key: key,
-            success(val) {
-                cb(val)
+            success(res) {
+                cb && cb(res.data)
             },
             fail() {},
         })
     }
 
-    getSync(key) {
-        let result = null;
+    getSync(key, isParse) {
+        let result;
         try {
-            result = wx.getStorageSync(key)
+            result = wx.getStorageSync(key);
+            result = result ? (!!isParse ? JSON.parse(result) : wx.getStorageSync(key)) : null;
         } catch(err) {
-            console.log('err: ', e)
+            console.log('err: ', err)
         }
-
         return result
     }
 
-    set(key, data, isAlert, cb) {
-
-        
-
-        // wx.setStorage({
-        //     key,
-        //     data,
-        //     success() {
-        //         !!isAlert && wx.showToast({
-        //             title: '加入购物车成功',
-        //             icon: 'success',
-        //             duration: 1200
-        //         });
-        //         cb && cb();
-        //     },
-        //     fail() {
-        //         !!isAlert && wx.showToast({
-        //             title: '加入购物车失败',
-        //             icon: 'none',
-        //             duration: 1200
-        //           })
-        //     }
-        // })
+    set(key, data, isArr, isAlert, cb) {
+    
+        if (!key || !data) return;
+        isAlert = !!isAlert;
+        // data = isArr ? [data] : data;
+        // let val = this.getSync(key, true);
+        // if (val && Object.prototype.toString.call(val) === '[object Array]') {
+        //     val = val.concat(data)
+        // } else {
+        //     val = data;
+        // }
+        wx.setStorage({
+            key,
+            data: JSON.stringify(data),
+            success() {
+                isAlert && wx.showToast({
+                    title: '加入购物车成功',
+                    icon: 'success',
+                    duration: 1200
+                });
+                cb && cb();
+            },
+            fail() {
+                isAlert && wx.showToast({
+                    title: '加入购物车失败',
+                    icon: 'none',
+                    duration: 1200
+                  })
+            }
+        })
     }
 
     remove(key, isAlert) {
