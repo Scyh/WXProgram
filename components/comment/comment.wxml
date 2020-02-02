@@ -1,11 +1,24 @@
-<view>
-    <view class="comment-header">
-        <image wx:if="{{pruchaser-profile}}" class="purchaser-profile"></image><text class="purchaser-name">用户名</text>
+<view class="comment {{isPage ? 'border' : ''}}">
+    <view class="comment-header {{isPage ? 'padding' : '' }}">
+        <view>
+            <image wx:if="{{pruchaser-profile}}" class="purchaser-profile"></image>
+            <text class="purchaser-name">{{comment.author}}</text>
+            <text wx:if="{{comment.isVip}}" class="isVip">超级会员</text>
+        </view>
+        <view class="comment-time">{{comment.time}}</view>
     </view>
     <view class="comment-body">
-        和图没啥区别，就是感觉有点薄  和此卖家交流，自觉七经八脉为之一畅,我只想说，老板你实在是太好了。 我要给好评……
+        <view class="comment-content">{{comment.content}}</view>
+
+        <!-- 追评 -->
+        <view wx:if="{{comment.append.time}}" class="append">
+            <view class="append-title">{{comment.append.time}}</view>
+            <view class="append-content">{{comment.append.content}}</view>
+        </view>
+
+
     </view>
     <view class="comment-footer">
-        <text class="commodity-info">2019-03-14 颜色:铁锈红；尺码:M</text>
+        <text class="commodity-info"><text wx:if="{{!isPage}}" class="comment-item">{{comment.time}}</text> {{comment.params}}</text>
     </view>
 </view>

@@ -1,5 +1,3 @@
-import LazyLoad from './lazyload.js'
-
 export default function scrollload(ctx, event, pageSelector) {
   if (!ctx.data.startTime) {
     ctx.setData({ startTime: new Date() })

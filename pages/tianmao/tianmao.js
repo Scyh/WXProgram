@@ -5,13 +5,14 @@ function generatGoods(count) {
     var arr = [];
     for (var i = 0; i < count; i++) {
         arr.push({
+            id: new Date().toString(),
             goods_img: "http://gw.alicdn.com/bao/uploaded/i2/3702913713/TB2Don2X9BYBeNjy0FeXXbnmFXa_!!3702913713.png_290x10000.jpg_.webp",
             goods_brand: {
                 brand: "JERXUN/京选",
                 bg_color: "rgb(206, 175, 163)",
                 img: "",
             },
-            intro: "京选钢丝钳老虎钳子6/7/8寸多功能工业级电工钳子平口克丝断线钳" + new Date(),
+            intro: "京选钢丝钳老虎钳子6/7/8寸多功能工业级电工钳子平口克丝断线钳" + new Date().toString(),
             price: "36.9"
         })
     }
@@ -26,6 +27,7 @@ Page({
         discount_bg: "http://gw.alicdn.com/tfs/TB1.QpVlOLaK1RjSZFxXXamPFXa-1125-541.png_790x10000.jpg_.webp",
         goods: [
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i3/3469494110/TB2WU5Nc.z.BuNjt_j7XXX0nFXa_!!3469494110.jpg_290x10000Q75.jpg_.webp",
                 goods_brand: {
                     brand: "卡甸",
@@ -36,6 +38,7 @@ Page({
                 price: "34.9"
             },
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i1/3397606051/O1CN011uZP41bwB5noQeY_!!3397606051.jpg_290x10000Q75.jpg_.webp",
                 goods_brand: {
                     brand: "resmed/瑞思迈",
@@ -46,6 +49,7 @@ Page({
                 price: "8800"
             },
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i1/2102742584/TB2B.K6o_nI8KJjSszbXXb4KFXa_!!2102742584.jpg_290x10000Q75.jpg_.webp",
                 goods_brand: {
                     brand: "Lining/李宁",
@@ -56,6 +60,7 @@ Page({
                 price: "119"
             },
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i2/3702913713/TB2Don2X9BYBeNjy0FeXXbnmFXa_!!3702913713.png_290x10000.jpg_.webp",
                 goods_brand: {
                     brand: "JERXUN/京选",
@@ -66,6 +71,7 @@ Page({
                 price: "36.9"
             },
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i3/3469494110/TB2WU5Nc.z.BuNjt_j7XXX0nFXa_!!3469494110.jpg_290x10000Q75.jpg_.webp",
                 goods_brand: {
                     brand: "卡甸",
@@ -76,6 +82,7 @@ Page({
                 price: "34.9"
             },
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i1/3397606051/O1CN011uZP41bwB5noQeY_!!3397606051.jpg_290x10000Q75.jpg_.webp",
                 goods_brand: {
                     brand: "resmed/瑞思迈",
@@ -86,6 +93,7 @@ Page({
                 price: "8800"
             },
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i1/2102742584/TB2B.K6o_nI8KJjSszbXXb4KFXa_!!2102742584.jpg_290x10000Q75.jpg_.webp",
                 goods_brand: {
                     brand: "Lining/李宁",
@@ -96,6 +104,7 @@ Page({
                 price: "119"
             },
             {
+                id: new Date().toString(),
                 goods_img: "http://gw.alicdn.com/bao/uploaded/i2/3702913713/TB2Don2X9BYBeNjy0FeXXbnmFXa_!!3702913713.png_290x10000.jpg_.webp",
                 goods_brand: {
                     brand: "JERXUN/京选",
