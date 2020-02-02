@@ -37,7 +37,7 @@
     padding: 20rpx 0;
 }
 .text-sm {
-    margin-right: 20rpx;
+    /* margin-right: 20rpx; */
 }
 .more {
     float: right;
@@ -50,4 +50,30 @@
 .box-header .more {
     margin-top: 22rpx;
     margin-left: 8rpx;
+}
+
+.recomend {
+    justify-content: space-between;
+    align-items: center;
+}
+.recomend-item {
+    flex: 1 0 0;
+}
+.recomend-img {
+    width: 218.5rpx;
+    height: 218.5rpx;
+
+}
+
+.details {
+    justify-content: center;
+    align-items: center;
+}
+.details .bar {
+    width: 100rpx;
+    height: 2rpx;
+    background: #999;
+}
+.details .details-text {
+    padding: 0 30rpx;
 }

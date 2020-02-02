@@ -19,7 +19,7 @@
     <!-- 选择和参数 -->
     <view class="section">
         <view class="section-item text-normal"><text class="text-sm">选择</text>请选择颜色尺码<image class="more" src="../../assert/imgs/more.png"></image></view>
-        <view class="section-item text-normal"><text class="text-sm">参数</text>品牌&nbsp;尺码...<image class="more" src="../../assert/imgs/more.png"></image></view>
+        <view class="section-item text-normal"><text class="text-sm">参数</text>品牌 尺码...<image class="more" src="../../assert/imgs/more.png"></image></view>
     </view>
 
     <!-- 商品评价 -->
@@ -33,8 +33,39 @@
         </view>
     </view>
 
+    <!-- 店家信息 -->
     <view class="section">
         <shop></shop>
     </view>
 
+    <!-- 看了又看 -->
+    <view class="section">
+        <view class="box-header"><text class="text-sm text-333">看了又看</text></view>
+        <view class="box-body">
+            <view class="flex recomend">
+                <block wx:for="{{recomends}}" wx:key="{{index}}">
+                    <view class="recomend-item {{ index == 0 ? 'text-left' : index == 1 ? 'text-center' : 'text-right'}}">
+                        <image class="recomend-img" src="{{item.img}}"></image>
+                        <text class="recomend-text text-sm line2 text-333">{{item.text}}</text>
+                        <view class="recomend-oldPrice lineThrough text-sm text-ccc">{{common.num2Money(item.oldPrice)}}</view>
+                        <view class="recomend-newPrice text-sm text-333">{{common.num2Money(item.newPrice)}}</view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+
+    <wxs module="common" src="../../filters/common.wxs"></wxs>
+
+    <!-- 详情 -->
+    <view class="details flex">
+        <view class="bar"></view>
+        <view class="text-sm text-ccc details-text">详情</view>
+        <view class="bar"></view>
+    </view>
+
+    <!-- 商品详情 -->
+    <view class="section">
+
+    </view>
 </view>
