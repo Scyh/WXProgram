@@ -12,7 +12,7 @@ Page({
             {
                 shopName: 'xxxxxx店铺',
                 shopType: "qiye",
-                selected: false,    // 店铺全选
+                true: false,    // 店铺全选
                 isEdit: false,
                 commodity: [
                     {
@@ -101,11 +101,6 @@ Page({
         this.getCommodities();
     },
 
-    onPullDownRefresh: function () {
-
-    },
-
-
     // 选择 店铺 或 商品
     checked(ev) {
         let dataset = ev.currentTarget.dataset,
@@ -114,26 +109,33 @@ Page({
             shopidx = dataset.shopidx;
         if (type === 'shop') {
             let selected = commodities[shopidx]['selected'];
-            if (selected) {
-                // 取消选中当前店铺包括商品全部
-                this.setSelected(commodities, shopidx, null, false);
-            } else {
-                // 全部选中当前店铺包括商品
-                this.setSelected(commodities, shopidx, null, true);
-            }
+            commodities[shopidx]['selected'] = !selected;
+            commodities[shopidx].commodity.forEach(i => i.selected = !selected)
+            // this.setSelected(commodities, shopidx, null, !selected)
+            // if (selected) {
+            //     // 取消选中当前店铺包括商品全部
+            //     this.setSelected(commodities, shopidx, null, false);
+            // } else {
+            //     // 全部选中当前店铺包括商品
+            //     this.setSelected(commodities, shopidx, null, true);
+            // }
         } else {
             let commodityIdx = dataset.index,
-                selected = commodities[shopidx]['commodity'][commodityIdx].selected;
-            if (selected) {
-                // 取消选中当前店铺包括商品全部
-                this.setSelected(commodities, shopidx, commodityIdx, false);
-            } else {
-                // 全部选中当前店铺包括商品
-                this.setSelected(commodities, shopidx, commodityIdx, true);
-            }
-        };
+              selected = commodities[shopidx]['commodity'][commodityIdx].selected;
 
-        // this.setData({ commodities: result })
+            commodities[shopidx]['commodity'][commodityIdx].selected = !selected
+            commodities[shopidx]['selected'] = commodities[shopidx]['commodity'].every(i => i.selected)
+          // this.setSelected(commodities, shopidx, commodityIdx, !selected);
+          // if (selected) {
+          //     // 取消选中当前店铺包括商品全部
+          //     this.setSelected(commodities, shopidx, commodityIdx, false);
+          // } else {
+          //     // 全部选中当前店铺包括商品
+          //     this.setSelected(commodities, shopidx, commodityIdx, true);
+          // }
+        };
+        this.setData({ commodities })
+        this.calcPrice();
     },
 
     // 全选
@@ -169,11 +171,6 @@ Page({
             accountInfo = Object.assign({}, this.data.accountInfo);
         if (commodityIdx == undefined) {
             commodities[shopidx]['selected'] = boolean;
-            commodities[shopidx].commodity.forEach(item => {
-                    item['selected'] = boolean;
-                    allCount += item['count'];
-                    allAccount += item['price'] * item['count'];
-            });
             if (!boolean) { allAccount = allAccount * -1; allCount = allCount * -1 };
         } else {
             commodities[shopidx].commodity[commodityIdx]['selected'] = boolean;
@@ -187,10 +184,10 @@ Page({
             commodities[shopidx]['selected'] = result;
         }
 
-        accountInfo['allCount'] += allCount;
-        accountInfo['allAccount'] += allAccount;
+        // accountInfo['allCount'] += allCount;
+        // accountInfo['allAccount'] += allAccount;
 
-        this.setData({ commodities, accountInfo })
+        this.setData({ commodities })
     },
 
     // 商品编辑
@@ -212,8 +209,8 @@ Page({
         // 判断 店铺中是否还有商品
         if (commodities[shopIdx]['commodity'].length <= 0) commodities.splice(shopIdx, 1);
 
-        this.setData({ commodities })
-
+        this.setData({ commodities });
+        this.calcPrice();
     },
 
     getCommodities() {
@@ -244,6 +241,27 @@ Page({
         };
 
         this.setData({ commodities });
-    }
+        this.calcPrice();
+    },
+
+    // 店铺复选框选择事件
+    handleShopChecked(event, isChecked) {
+      console.log(event, isChecked)
+    },
+
+    calcPrice() {
+      let allCount = 0,
+        allAccount = 0;
+      
+      this.data.commodities.forEach(i => {
+        i.commodity.forEach(c => {
+          if (c.selected) {
+            allCount += c.count;
+            allAccount += c.count * c.price
+          }
+        })
+      });
+      this.setData({ accountInfo: { allCount, allAccount } })
+    },
 
 })

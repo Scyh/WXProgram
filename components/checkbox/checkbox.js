@@ -5,12 +5,10 @@ Component({
             value: false
         }
     },
-    // data: {
-    //     checked: false
-    // },
+
     methods: {
-        // checked() {
-        //     this.setData({ checked: !this.data.checked })
-        // }
+      handleChecked: function() {
+        this.triggerEvent('check', { checked: this.data.checked })
+      }
     }
 })

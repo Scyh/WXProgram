@@ -1,1 +1,1 @@
-<view class="checkbox {{checked ? 'checked' : ''}}"></view>
+<view class="checkbox {{checked ? 'checked' : ''}}" bindtap="handleChecked"></view>

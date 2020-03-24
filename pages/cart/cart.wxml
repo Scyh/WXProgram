@@ -1,8 +1,6 @@
 <!--pages/cart/cart.wxml-->
 <view id="cart">
-
     <block wx:if="!!app.globalData.userInfo">
-        
         <no-content wx:if="{{commodities.length == 0}}" types="cart" title="购物车里暂时还没有东西哦" subTitle="快去购买吧"></no-content>
 
         <block wx:else>
@@ -10,7 +8,7 @@
                 <!-- 购物车商品 -->
                 <view class="commodity-box">
                     <view class="box-header flex">
-                        <view class="checkbox" data-shopIdx="{{index}}" data-type="shop" catchtap="checked"><cus-checkbox checked="{{shop.selected}}"></cus-checkbox></view>
+                        <view class="checkbox" data-shopIdx="{{index}}" data-type="shop" catchtap="checked"><cus-checkbox bind:check="handleShopChecked" checked="{{shop.selected}}"></cus-checkbox></view>
                         <view class="shop flex">
                             <view class="shop-logo {{shop.shopType || 'qiye'}}"></view>
                             <view class="shop-name text-sm text-333">{{shop.shopName}}</view>
@@ -55,18 +53,6 @@
         </view>
     </view>
         </block>
-    
     </block>
-
     <no-content wx:else types="cart" title="登录账号才能看到购物车哦" subTitle="登录失效" btn="马上登录"></no-content>
-    
-    
-    
-  
-  
-    
-  
-    
-
-
 </view>
