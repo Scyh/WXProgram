@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "天猫购物",
   "usingComponents": {
-    "goods-item": "/components/goodsItem/goodsItem"
-  }
+    "goods-item": "/components/goodsItem/goodsItem",
+    "pagination": "/components/pagination/index"
+  },
+  "onReachBottomDistance": 150
 }

@@ -46,5 +46,6 @@
         "selectedIconPath": "assert/imgs/user_selected.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

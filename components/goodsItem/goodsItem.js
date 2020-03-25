@@ -1,11 +1,14 @@
 // components/goodsItem/goodsItem.js
 Component({
     properties: {
-        goods: Object,
+        item: Object,
     },
     data: {
     },
     methods: {
 
     },
+    attached: function() {
+        console.log(this.properties)
+    }
 })

@@ -1,6 +1,7 @@
-import scrollLoad from '../../utils/scrollload.js';
-import LazyLoad from '../../utils/lazyload.js'
-function generatGoods(count) {
+// import scrollLoad from '../../utils/scrollload.js';
+// import LazyLoad from '../../utils/lazyload.js'
+import { uid } from '../../utils/common.js'
+function _generateGoods(count) {
     count = count || 8;
     var arr = [];
     for (var i = 0; i < count; i++) {
@@ -17,6 +18,13 @@ function generatGoods(count) {
         })
     }
     return arr
+}
+function generateGoods() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(_generateGoods())
+        }, Math.random() * 1000)
+    })
 }
 // pages/tianmao/tianmao.js
 Page({
@@ -115,27 +123,45 @@ Page({
                 price: "36.9"
             }
         ],
-
+        goodsKey: uid()
     },
     onReady() {
-        this.data.lazyLoad = new LazyLoad({ ctx: this, imgSelector: '.main-item', ctxDataArray: 'goods', imgClassName: 'goods_img' });
-        this.data.lazyLoad.init()
+        // this.data.lazyLoad = new LazyLoad({ ctx: this, imgSelector: '.main-item', ctxDataArray: 'goods', imgClassName: 'goods_img' });
+        // this.data.lazyLoad.init()
     },
 
-    onPageScroll(ev) {
-        // 图片懒加载
-        this.data.lazyLoad.lazy();
-        this.setData({ animate: true })
-        if (ev.scrollTop == 0) this.setData({ animate: false });
+    // onPageScroll(ev) {
+    //     // 图片懒加载
+    //     this.data.lazyLoad.lazy();
+    //     this.setData({ animate: true })
+    //     if (ev.scrollTop == 0) this.setData({ animate: false });
 
-        // 滚动加载    
-        var sL = scrollLoad(this, ev, '#tianmao');
-        var that = this;
-        sL(() => {
-            setTimeout(() => {
-                that.setData({ goods: that.data.goods.concat(generatGoods()) });
-            }, 500)
-        });
+    //     // 滚动加载    
+    //     var sL = scrollLoad(this, ev, '#tianmao');
+    //     var that = this;
+    //     sL(() => {
+    //         setTimeout(() => {
+    //             that.setData({ goods: that.data.goods.concat(generatGoods()) });
+    //         }, 500)
+    //     });
+    // },
+
+    onReachBottom() {
+        this.setData({ goodsKey: uid() })
     },
 
+    methods: {
+        getGoods() {
+            console.log('触发')
+            generateGoods().then(() => {
+                this.setData({ goods: this.data.goods.concat(generatGoods()) });
+            })
+        }
+    },
+    getGoods() {
+        console.log('触发')
+        generateGoods().then(data => {
+            this.setData({ goods: this.data.goods.concat(data) });
+        })
+    }
 })
