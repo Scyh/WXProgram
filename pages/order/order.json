@@ -2,6 +2,7 @@
   "navigationBarTitleText": "订单",
   "usingComponents": {
      "order-item": "/components/orderItem/orderItem",
-     "no-content": "/components/noContent/noContent"
+     "no-content": "/components/noContent/noContent",
+     "tab":"/components/tab/index"
   }
 }

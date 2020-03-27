@@ -1,0 +1,18 @@
+<view class="tab">
+  <view class="tab-title">
+    <block wx:for="{{titles}}" wx:key="item">
+      <text bindtap="handleTitleTap" data-index="{{index}}" class="tab-title-item {{ current === index ? 'current' : '' }}">{{item}}</text>
+    </block>
+  </view>
+  <view class="tab-content">
+    <swiper
+      bindchange="handleSwiperChange"
+      bindanimationfinish="handleAnimationFinish"
+      current="{{current}}"
+      duration="{{duration}}">
+      <swiper-item wx:for="{{titles}}" wx:key="title">
+        <slot name="tab-content-{{index}}"></slot>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

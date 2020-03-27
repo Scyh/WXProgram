@@ -1,5 +1,5 @@
 <!-- components/goodsItem/goodsItem.wxml -->
-<navigator url="{{'/pages/commodity/commodity?id=' + item.id }}">
+<navigator class="goods-link" url="{{'/pages/commodity/commodity?id=' + item.id }}">
     <view class="goods">
         <image class="goods-img" lazy-load="true" src="{{item.goods_img}}"></image>
         <view class="goods-brand" style="background: {{ item.goods_brand.bg_color }}">

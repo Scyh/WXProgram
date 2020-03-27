@@ -4,5 +4,5 @@
     "goods-item": "/components/goodsItem/goodsItem",
     "pagination": "/components/pagination/index"
   },
-  "onReachBottomDistance": 150
+  "onReachBottomDistance": 200
 }

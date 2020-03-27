@@ -3,6 +3,7 @@ const app = getApp();
 var time = 0,
     touchX = 0,
     interval;
+import { getOrder } from '../../api/index'
 Page({
 
     /**
@@ -15,28 +16,33 @@ Page({
         lists: [
             {
                 left: 0,
-                types: "all"
+                types: "all",
+                content: []
             },
             {
                 left: 0,
-                types: "pay"
+                types: "pay",
+                content: []
             },
             {
                 left: 0,
-                types: "delivery"
+                types: "delivery",
+                content: []
             },
             {
                 left: 0,
-                types: "waiting"
+                types: "waiting",
+                content: []
             },
             {
                 left: 0,
-                types: 'comment'
+                types: 'comment',
+                content: []
             }
         ],
         currentTab: 0,
         _SysWidth: wx.getSystemInfoSync().windowWidth,
-        flag: true, // 防止多次点击
+        // flag: true, // 防止多次点击
     },
 
     // 点击 tab 切换
@@ -141,34 +147,53 @@ Page({
                 url: `/pages/login/login?from=${this.route}&tab=true`,
             })
         } else {
-            wx.showLoading({
-                title: '加载中',
-            });
-            this.data.lists.map((el, index) => {
-                if (index == 0) return
-                else { let dom = `lists[${index}].left`; this.setData({ [dom]: this.data._SysWidth * -1 }) }
-            })
+            
+            getOrder().then(data => {
+                let orders = data.orders
+                console.log(orders)
+                if (Array.isArray(orders)) {
+                    
+                    let map = {
+                        'all': orders,
+                        'pay': [],
+                        'delivery': [],
+                        'waiting': [],
+                        'comment': [],
+                    }
+                    orders.forEach(i => {
+                        map[i.status].push(i)
+                    })
 
+                    let lists = this.data.lists.slice(0)
+                    lists.forEach(i => {
+                        i.content = map[i.types]
+                    })
+                    console.log(lists)
+                    this.setData({ lists })
+                }
+            })
+            
+            return;
             wx.request({
                 url: 'https://api.myjson.com/bins/13qn4a',
                 method: 'GET',
                 success: res => {
-                    this.data.lists.map((list, index) => {
-                        let temp = [];
-                        if (index == 0) {
-                            let target = `lists[0].content`;
-                            this.setData({ [target]: res.data.orders });
-                            return
-                        }
-                        res.data.orders.map(order => {
-                            if (order.status == list.types) {
-                                temp.push(order)
-                            }
-                        });
-                        let target = `lists[${index}].content`;
-                        this.setData({ [target]: temp });
-                    });
-
+                    // console.log(res)
+                    // this.data.lists.map((list, index) => {
+                    //     let temp = [];
+                    //     if (index == 0) {
+                    //         let target = `lists[0].content`;
+                    //         this.setData({ [target]: res.data.orders });
+                    //         return
+                    //     }
+                    //     res.data.orders.map(order => {
+                    //         if (order.status == list.types) {
+                    //             temp.push(order)
+                    //         }
+                    //     });
+                    //     let target = `lists[${index}].content`;
+                    //     this.setData({ [target]: temp });
+                    // });
                     wx.hideLoading();
                 },
             })

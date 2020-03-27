@@ -1,0 +1,33 @@
+.tab {}
+.tab .tab-title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  line-height: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: #eee;
+}
+.tab .tab-title .tab-title-item {
+  padding: 20rpx 0;
+  flex: 1;
+  font-size: 24rpx;
+  box-sizing: border-box;
+}
+.tab .tab-title .tab-title-item.current {
+  border-bottom: 2px solid red;
+}
+.tab .tab-content {
+  padding-top: 80rpx;
+}
+.tab .tab-content swiper {
+  height: 100vh;
+}
+.tab .tab-content swiper swiper-item {
+  overflow-x: hidden;
+  overflow-y: auto;
+}

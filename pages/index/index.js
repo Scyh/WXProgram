@@ -111,7 +111,6 @@ Page({
     }
   },
   
-  onLoad: function (options) {
-
+  onLoad (options) {
   },
 })

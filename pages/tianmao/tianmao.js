@@ -150,14 +150,6 @@ Page({
         this.setData({ goodsKey: uid() })
     },
 
-    methods: {
-        getGoods() {
-            console.log('触发')
-            generateGoods().then(() => {
-                this.setData({ goods: this.data.goods.concat(generatGoods()) });
-            })
-        }
-    },
     getGoods() {
         console.log('触发')
         generateGoods().then(data => {
